@@ -1,68 +1,188 @@
-# CodeIgniter 4 Application Starter
+# Website Sekolah - CodeIgniter 4 + Tailwind CSS
 
-## What is CodeIgniter?
+> Modern and responsive school website application built with CodeIgniter 4 and Tailwind CSS
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-4.6-red.svg)](https://codeigniter.com/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-blue.svg)](https://tailwindcss.com/)
+[![PHP](https://img.shields.io/badge/PHP-7.4+-purple.svg)](https://www.php.net/)
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## 🎯 Features
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### Frontend (Public Website)
+- ✅ Responsive homepage with hero slider
+- ✅ Latest news section
+- ✅ Student & teacher statistics with animation
+- ✅ Teacher profiles showcase
+- ✅ Contact information with Google Maps
+- ✅ Responsive navigation with dropdown menus
+- ✅ Mobile-friendly design
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### Admin Panel
+- ✅ Secure authentication system
+- ✅ Dashboard with statistics
+- ✅ Responsive admin layout with sidebar
+- ✅ User session management
+- 📋 CRUD operations for all modules (ready to implement)
+- 📋 Modal-based forms (ready to implement)
+- 📋 File upload management (ready to implement)
 
-## Installation & updates
+### Database Structure
+12 tables fully configured:
+- `users` - Admin authentication
+- `settings` - School information
+- `sliders` - Homepage slideshow
+- `berita` - News/articles
+- `guru` - Teachers data
+- `siswa` - Students data
+- `profil` - School profile (vision, mission, history, etc.)
+- `galeri_foto` - Photo gallery
+- `galeri_video` - Video gallery
+- `prestasi` - Achievements
+- `download` - Downloadable files
+- `link_aplikasi` - External application links
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🚀 Quick Start
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+### Prerequisites
+- PHP 7.4 or higher
+- MySQL 5.7 or higher
+- Composer
 
-## Setup
+### Installation
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+1. **Clone the repository**
+```bash
+git clone https://github.com/RizkyFauzy0/websekolahci4.git
+cd websekolahci4
+```
 
-## Important Change with index.php
+2. **Install dependencies**
+```bash
+composer install
+```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+3. **Setup environment**
+```bash
+cp env .env
+```
+Edit `.env` and configure your database settings.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+4. **Create database**
+```sql
+CREATE DATABASE websekolah_db;
+```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+5. **Run migrations**
+```bash
+php spark migrate
+```
 
-## Repository Management
+6. **Seed initial data**
+```bash
+php spark db:seed InitialDataSeeder
+```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+7. **Set permissions**
+```bash
+chmod -R 777 public/uploads writable
+```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+8. **Start development server**
+```bash
+php spark serve
+```
 
-## Server Requirements
+9. **Access the application**
+- **Frontend:** http://localhost:8080
+- **Admin Login:** http://localhost:8080/admin/login
+  - Username: `admin`
+  - Password: `admin123`
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+## 📖 Documentation
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- **[QUICKSTART.md](QUICKSTART.md)** - Step-by-step setup guide
+- **[README_IMPLEMENTATION.md](README_IMPLEMENTATION.md)** - Complete implementation guide with code templates
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+## 🎨 Technology Stack
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+- **Backend:** CodeIgniter 4.6.4
+- **Frontend:** Tailwind CSS 3.x (CDN)
+- **JavaScript:** Alpine.js 3.x
+- **Icons:** Font Awesome 6
+- **Database:** MySQL
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## 📱 Responsive Design
+
+The website is fully responsive and works perfectly on:
+- 📱 Mobile devices
+- 📱 Tablets
+- 💻 Desktop computers
+
+## 🔐 Security Features
+
+- Password hashing with bcrypt
+- CSRF protection
+- XSS protection
+- Authentication filter for admin routes
+- Input validation
+
+## 📂 Project Structure
+
+```
+websekolahci4/
+├── app/
+│   ├── Controllers/      # All controllers
+│   ├── Models/          # Database models
+│   ├── Views/           # View templates
+│   ├── Filters/         # Auth filters
+│   └── Database/
+│       ├── Migrations/  # Database migrations
+│       └── Seeds/       # Data seeders
+├── public/
+│   └── uploads/         # Upload directories
+└── writable/            # Cache, logs, sessions
+```
+
+## 🎯 Current Status
+
+### ✅ Completed
+- CodeIgniter 4 setup
+- Database structure (12 tables)
+- All models created
+- Frontend layout & homepage
+- Authentication system
+- Admin dashboard layout
+- Routes configuration
+- Responsive design
+
+### 📋 Ready to Implement
+See `README_IMPLEMENTATION.md` for templates:
+- Settings management
+- Slider CRUD
+- News CRUD
+- Teacher CRUD
+- Student CRUD
+- Gallery CRUD
+- And more...
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+## 👨‍💻 Author
+
+**RizkyFauzy0**
+
+## 🙏 Acknowledgments
+
+- CodeIgniter 4 Team
+- Tailwind CSS Team
+- Font Awesome
+
+---
+
+For detailed setup and implementation instructions, see [QUICKSTART.md](QUICKSTART.md) and [README_IMPLEMENTATION.md](README_IMPLEMENTATION.md)
